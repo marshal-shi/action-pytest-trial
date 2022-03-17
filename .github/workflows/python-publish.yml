@@ -9,13 +9,33 @@
 name: Upload Python Package
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - main
+      - develop
+      - 'releases/**'
+  pull_request:
+    branches:
+      - main
+# env:
+#   DATABASE_TEST_URL: postgres://postgres:postgres@postgres:5432/action-db
+#   DATABASE_URL: postgres://postgres:postgres@postgres:5432/action-db
+#   EMAIL_ADDRESS: "test@test.com"
+#   EMAIL_PASSWORD: "test"
 
 jobs:
   deploy:
 
     runs-on: ubuntu-latest
+
+    # services:
+    #   postgres:
+    #     image: postgres
+    #     env:
+    #       POSTGRES_DB: action-db
+    #       POSTGRES_PASSWORD: postgres
+    #     ports:
+    #       - 5432:5432
 
     steps:
     - uses: actions/checkout@v2
